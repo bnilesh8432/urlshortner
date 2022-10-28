@@ -5,6 +5,6 @@ const ShortUrlSchema = new mongoose.Schema(
     shortUrl: { type: String, required: true, unique: true, lowercase:true },
     urlCode: { type: String, required: true, unique: true, lowercase: true, trim: true }
   }, 
-  { versionKey: false }
+  { timestamps : true }
 )
 module.exports = mongoose.model("ShortUrl", ShortUrlSchema);

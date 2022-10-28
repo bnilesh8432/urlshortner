@@ -33,6 +33,7 @@ const GET_ASYNC = promisify(redisClient.GET).bind(redisClient);
 const createUrl = async function (req, res) {
     try {
         let body = req.body
+        let baseUrl = req.headers.host;
         if (Object.keys(body).length == 0) return res.status(400).send({ status: false, message: "plzz give some data" });
 
         let longUrl = body.longUrl
@@ -69,7 +70,7 @@ const createUrl = async function (req, res) {
             }
 
             let urlCode = shortid.generate(longUrl)
-            let shortUrl = `http://localhost:3000/${urlCode}`
+            let shortUrl = baseUrl+'/'+urlCode
 
             let finalData = {
                 urlCode: urlCode,
